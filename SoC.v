@@ -39412,30 +39412,30 @@ module CSR(
   reg [63:0] _RAND_5;
   reg [31:0] _RAND_6;
   reg [31:0] _RAND_7;
-  reg [63:0] _RAND_8;
-  reg [31:0] _RAND_9;
-  reg [31:0] _RAND_10;
-  reg [31:0] _RAND_11;
+  reg [31:0] _RAND_8;
+  reg [63:0] _RAND_9;
+  reg [63:0] _RAND_10;
+  reg [63:0] _RAND_11;
   reg [63:0] _RAND_12;
   reg [63:0] _RAND_13;
-  reg [63:0] _RAND_14;
-  reg [63:0] _RAND_15;
-  reg [63:0] _RAND_16;
+  reg [31:0] _RAND_14;
+  reg [31:0] _RAND_15;
+  reg [31:0] _RAND_16;
   reg [31:0] _RAND_17;
   reg [31:0] _RAND_18;
   reg [31:0] _RAND_19;
-  reg [31:0] _RAND_20;
-  reg [31:0] _RAND_21;
-  reg [31:0] _RAND_22;
+  reg [63:0] _RAND_20;
+  reg [63:0] _RAND_21;
+  reg [63:0] _RAND_22;
   reg [63:0] _RAND_23;
   reg [63:0] _RAND_24;
   reg [63:0] _RAND_25;
   reg [63:0] _RAND_26;
   reg [63:0] _RAND_27;
   reg [63:0] _RAND_28;
-  reg [63:0] _RAND_29;
-  reg [63:0] _RAND_30;
-  reg [63:0] _RAND_31;
+  reg [31:0] _RAND_29;
+  reg [31:0] _RAND_30;
+  reg [31:0] _RAND_31;
   reg [31:0] _RAND_32;
   reg [31:0] _RAND_33;
   reg [31:0] _RAND_34;
@@ -39446,10 +39446,6 @@ module CSR(
   reg [31:0] _RAND_39;
   reg [31:0] _RAND_40;
   reg [31:0] _RAND_41;
-  reg [31:0] _RAND_42;
-  reg [31:0] _RAND_43;
-  reg [31:0] _RAND_44;
-  reg [31:0] _RAND_45;
 `endif // RANDOMIZE_REG_INIT
   reg [1:0] prv; // @[CSR.scala 48:26]
   wire  mret_legal = prv == 2'h3; // @[CSR.scala 49:24]
@@ -39491,18 +39487,11 @@ module CSR(
   wire  _GEN_159 = io_rw_addr == 12'hb00 ? mret_legal : _GEN_155; // @[CSR.scala 607:38 612:15]
   wire  _GEN_161 = io_rw_addr == 12'hc00 ? mret_legal | prv_is_s & mcounteren[0] | prv_is_u & mcounteren[0] & scounteren
     [0] : _GEN_159; // @[CSR.scala 614:37 616:15]
-  wire  _GEN_165 = io_rw_addr == 12'h350 ? mret_legal : _GEN_161; // @[CSR.scala 627:33 632:15]
-  wire  _GEN_169 = io_rw_addr == 12'h351 ? mret_legal : _GEN_165; // @[CSR.scala 642:33 647:15]
-  wire  _GEN_172 = io_rw_addr == 12'hc01 ? mret_legal | prv_is_s & mcounteren[1] | prv_is_u & mcounteren[1] & scounteren
-    [1] : _GEN_169; // @[CSR.scala 663:36 665:15]
-  wire  _GEN_176 = io_rw_addr == 12'hb02 ? mret_legal : _GEN_172; // @[CSR.scala 677:40 682:15]
+  wire  _GEN_165 = io_rw_addr == 12'hb02 ? mret_legal : _GEN_161; // @[CSR.scala 629:40 634:15]
   wire  csr_legal = io_rw_addr == 12'hc02 ? mret_legal | prv_is_s & mcounteren[2] | prv_is_u & mcounteren[2] &
-    scounteren[2] : _GEN_176; // @[CSR.scala 684:39 686:15]
+    scounteren[2] : _GEN_165; // @[CSR.scala 636:39 638:15]
   wire  wen = io_rw_cmd != 2'h0 & io_uop_exc == 3'h0 & csr_legal; // @[CSR.scala 57:81]
-  reg [63:0] instret; // @[CSR.scala 675:24]
-  reg [63:0] time_; // @[CSR.scala 656:27]
-  reg [7:0] timer_step; // @[CSR.scala 641:27]
-  reg [7:0] timer_freq; // @[CSR.scala 626:27]
+  reg [63:0] instret; // @[CSR.scala 627:24]
   reg [63:0] cycle; // @[CSR.scala 605:22]
   reg  ip_seip_r; // @[CSR.scala 555:26]
   wire  ip_seip = io_interrupt_seip | ip_seip_r; // @[CSR.scala 556:38]
@@ -39581,11 +39570,8 @@ module CSR(
   wire [63:0] _GEN_153 = io_rw_addr == 12'h144 ? sip : _GEN_147; // @[CSR.scala 591:35 592:11]
   wire [63:0] _GEN_157 = io_rw_addr == 12'hb00 ? cycle : _GEN_153; // @[CSR.scala 607:38 608:11]
   wire [63:0] _GEN_160 = io_rw_addr == 12'hc00 ? cycle : _GEN_157; // @[CSR.scala 614:37 615:15]
-  wire [63:0] _GEN_163 = io_rw_addr == 12'h350 ? {{56'd0}, timer_freq} : _GEN_160; // @[CSR.scala 627:33 628:11]
-  wire [63:0] _GEN_167 = io_rw_addr == 12'h351 ? {{56'd0}, timer_step} : _GEN_163; // @[CSR.scala 642:33 643:11]
-  wire [63:0] _GEN_171 = io_rw_addr == 12'hc01 ? time_ : _GEN_167; // @[CSR.scala 663:36 664:15]
-  wire [63:0] _GEN_174 = io_rw_addr == 12'hb02 ? instret : _GEN_171; // @[CSR.scala 677:40 678:11]
-  wire [63:0] rdata = io_rw_addr == 12'hc02 ? instret : _GEN_174; // @[CSR.scala 684:39 685:15]
+  wire [63:0] _GEN_163 = io_rw_addr == 12'hb02 ? instret : _GEN_160; // @[CSR.scala 629:40 630:11]
+  wire [63:0] rdata = io_rw_addr == 12'hc02 ? instret : _GEN_163; // @[CSR.scala 636:39 637:15]
   wire [63:0] _wdata_T = rdata | io_rw_wdata; // @[CSR.scala 63:31]
   wire [63:0] _wdata_T_1 = ~io_rw_wdata; // @[CSR.scala 64:33]
   wire [63:0] _wdata_T_2 = rdata & _wdata_T_1; // @[CSR.scala 64:31]
@@ -39634,67 +39620,57 @@ module CSR(
   wire  _GEN_144 = wen ? wdata[1] : ip_ssip; // @[CSR.scala 584:15 585:17 551:26]
   wire  _GEN_148 = io_rw_addr == 12'h344 ? _GEN_144 : ip_ssip; // @[CSR.scala 551:26 582:35]
   wire [63:0] _cycle_T_1 = cycle + 64'h1; // @[CSR.scala 606:18]
-  wire [63:0] _GEN_162 = wen ? wdata : {{56'd0}, timer_freq}; // @[CSR.scala 629:15 630:18 626:27]
-  wire [63:0] _GEN_164 = io_rw_addr == 12'h350 ? _GEN_162 : {{56'd0}, timer_freq}; // @[CSR.scala 626:27 627:33]
-  wire [63:0] _GEN_166 = wen ? wdata : {{56'd0}, timer_step}; // @[CSR.scala 644:15 645:18 641:27]
-  wire [63:0] _GEN_168 = io_rw_addr == 12'h351 ? _GEN_166 : {{56'd0}, timer_step}; // @[CSR.scala 641:27 642:33]
-  reg [7:0] timer_cnt; // @[CSR.scala 657:27]
-  wire [7:0] _timer_tick_T_1 = timer_freq - 8'h1; // @[CSR.scala 658:47]
-  wire  timer_tick = timer_cnt == _timer_tick_T_1; // @[CSR.scala 658:31]
-  wire [7:0] _timer_cnt_T_1 = timer_cnt + 8'h1; // @[CSR.scala 659:47]
-  wire [63:0] _GEN_227 = {{56'd0}, timer_step}; // @[CSR.scala 661:18]
-  wire [63:0] _time_T_1 = time_ + _GEN_227; // @[CSR.scala 661:18]
-  wire [63:0] _GEN_228 = {{63'd0}, io_commit}; // @[CSR.scala 676:22]
-  wire [63:0] _instret_T_1 = instret + _GEN_228; // @[CSR.scala 676:22]
-  wire  is_mret = io_uop_sys_op == 3'h1; // @[CSR.scala 701:34]
-  wire  _T_35 = is_mret & mret_legal; // @[CSR.scala 703:16]
-  wire  _GEN_179 = mstatus_mpp != 2'h3 ? 1'h0 : _GEN_37; // @[CSR.scala 709:35 710:20]
-  wire [1:0] _GEN_180 = is_mret & mret_legal ? mstatus_mpp : prv; // @[CSR.scala 703:31 704:18 48:26]
-  wire  _GEN_182 = is_mret & mret_legal | _GEN_35; // @[CSR.scala 703:31 707:18]
-  wire  _GEN_184 = is_mret & mret_legal ? _GEN_179 : _GEN_37; // @[CSR.scala 703:31]
-  wire  is_sret = io_uop_sys_op == 3'h2; // @[CSR.scala 714:34]
-  wire  sret_legal = prv_is_ms & ~mstatus_tsr; // @[CSR.scala 715:30]
-  wire  _T_37 = is_sret & sret_legal; // @[CSR.scala 716:16]
-  wire [1:0] _GEN_229 = {{1'd0}, status_spp}; // @[CSR.scala 722:21]
-  wire [1:0] _GEN_186 = is_sret & sret_legal ? {{1'd0}, status_spp} : _GEN_180; // @[CSR.scala 716:31 717:17]
-  wire  _GEN_188 = is_sret & sret_legal | _GEN_29; // @[CSR.scala 716:31 720:17]
-  wire  _GEN_189 = is_sret & sret_legal ? 1'h0 : _GEN_30; // @[CSR.scala 716:31 721:17]
-  wire  is_sfv = io_uop_sys_op == 3'h6 & io_uop_valid; // @[CSR.scala 730:55]
-  wire  is_fence_i = io_uop_sys_op == 3'h5 & io_uop_valid; // @[CSR.scala 732:58]
-  wire  is_sys = io_sfence_vma | is_fence_i; // @[CSR.scala 733:34]
-  wire  is_exc_from_prev = io_uop_exc != 3'h0; // @[CSR.scala 740:38]
-  wire  is_exc_from_lsu = io_lsu_exc_code != 4'h0; // @[CSR.scala 741:43]
-  wire  is_exc_from_csr = ~csr_legal & _wen_T; // @[CSR.scala 742:37]
-  wire  _is_exc_from_sys_T = ~mret_legal; // @[CSR.scala 743:38]
-  wire  is_exc_from_sys = is_mret & ~mret_legal | is_sret & ~sret_legal | is_sfv & ~_csr_legal_T_1; // @[CSR.scala 743:79]
-  wire  is_exc = is_exc_from_prev | is_exc_from_lsu | is_exc_from_csr; // @[CSR.scala 744:62]
-  wire  int_attach = io_uop_valid & (io_uop_fu == 3'h0 | io_uop_fu == 3'h1); // @[CSR.scala 764:37]
-  wire [63:0] int_bits = mip & mie; // @[CSR.scala 765:28]
-  wire [63:0] _int_bits_mmode_T = ~mideleg; // @[CSR.scala 766:36]
-  wire [63:0] int_bits_mmode = int_bits & _int_bits_mmode_T; // @[CSR.scala 766:33]
-  wire [3:0] _GEN_191 = int_bits[5] ? 4'h5 : 4'h0; // @[CSR.scala 758:22 747:24 759:9]
-  wire [3:0] _GEN_192 = int_bits[1] ? 4'h1 : _GEN_191; // @[CSR.scala 756:22 757:9]
-  wire [3:0] _GEN_193 = int_bits[9] ? 4'h9 : _GEN_192; // @[CSR.scala 754:22 755:9]
-  wire [3:0] _GEN_194 = int_bits[7] ? 4'h7 : _GEN_193; // @[CSR.scala 752:22 753:9]
-  wire [3:0] _GEN_195 = int_bits[3] ? 4'h3 : _GEN_194; // @[CSR.scala 750:22 751:9]
-  wire [3:0] int_index_tmp = int_bits[11] ? 4'hb : _GEN_195; // @[CSR.scala 748:17 749:9]
-  wire [3:0] _GEN_197 = int_bits_mmode[5] ? 4'h5 : 4'h0; // @[CSR.scala 758:22 747:24 759:9]
-  wire [3:0] _GEN_198 = int_bits_mmode[1] ? 4'h1 : _GEN_197; // @[CSR.scala 756:22 757:9]
-  wire [3:0] _GEN_199 = int_bits_mmode[9] ? 4'h9 : _GEN_198; // @[CSR.scala 754:22 755:9]
-  wire [3:0] _GEN_200 = int_bits_mmode[7] ? 4'h7 : _GEN_199; // @[CSR.scala 752:22 753:9]
-  wire [3:0] _GEN_201 = int_bits_mmode[3] ? 4'h3 : _GEN_200; // @[CSR.scala 750:22 751:9]
-  wire [3:0] int_index_y = int_bits_mmode[11] ? 4'hb : _GEN_201; // @[CSR.scala 748:17 749:9]
-  wire [3:0] _GEN_203 = mstatus_mie ? int_index_y : 4'h0; // @[CSR.scala 771:30 772:17 768:34]
-  wire [15:0] _T_41 = 16'h1 << int_index_tmp; // @[CSR.scala 775:16]
-  wire [63:0] _GEN_230 = {{48'd0}, _T_41}; // @[CSR.scala 775:34]
-  wire [63:0] _T_42 = _GEN_230 & mideleg; // @[CSR.scala 775:34]
-  wire [3:0] _GEN_204 = status_sie | prv_is_u ? int_index_tmp : 4'h0; // @[CSR.scala 776:50 777:19 768:34]
-  wire [3:0] _GEN_205 = mstatus_mie | prv_is_u | prv_is_s ? int_index_tmp : 4'h0; // @[CSR.scala 780:70 781:19 768:34]
-  wire [3:0] _GEN_206 = _T_42 != 64'h0 ? _GEN_204 : _GEN_205; // @[CSR.scala 775:54]
-  wire [3:0] int_index = mret_legal ? _GEN_203 : _GEN_206; // @[CSR.scala 770:25]
-  wire  is_int = int_attach & int_index != 4'h0; // @[CSR.scala 785:27]
-  wire [1:0] _cause_exc_T_2 = is_exc_from_csr | is_exc_from_sys ? 2'h2 : 2'h0; // @[CSR.scala 796:10]
-  wire [3:0] _cause_exc_T_3 = is_exc_from_lsu ? io_lsu_exc_code : {{2'd0}, _cause_exc_T_2}; // @[CSR.scala 793:8]
+  wire [63:0] _GEN_216 = {{63'd0}, io_commit}; // @[CSR.scala 628:22]
+  wire [63:0] _instret_T_1 = instret + _GEN_216; // @[CSR.scala 628:22]
+  wire  is_mret = io_uop_sys_op == 3'h1; // @[CSR.scala 653:34]
+  wire  _T_32 = is_mret & mret_legal; // @[CSR.scala 655:16]
+  wire  _GEN_168 = mstatus_mpp != 2'h3 ? 1'h0 : _GEN_37; // @[CSR.scala 661:35 662:20]
+  wire [1:0] _GEN_169 = is_mret & mret_legal ? mstatus_mpp : prv; // @[CSR.scala 655:31 656:18 48:26]
+  wire  _GEN_171 = is_mret & mret_legal | _GEN_35; // @[CSR.scala 655:31 659:18]
+  wire  _GEN_173 = is_mret & mret_legal ? _GEN_168 : _GEN_37; // @[CSR.scala 655:31]
+  wire  is_sret = io_uop_sys_op == 3'h2; // @[CSR.scala 666:34]
+  wire  sret_legal = prv_is_ms & ~mstatus_tsr; // @[CSR.scala 667:30]
+  wire  _T_34 = is_sret & sret_legal; // @[CSR.scala 668:16]
+  wire [1:0] _GEN_217 = {{1'd0}, status_spp}; // @[CSR.scala 674:21]
+  wire [1:0] _GEN_175 = is_sret & sret_legal ? {{1'd0}, status_spp} : _GEN_169; // @[CSR.scala 668:31 669:17]
+  wire  _GEN_177 = is_sret & sret_legal | _GEN_29; // @[CSR.scala 668:31 672:17]
+  wire  _GEN_178 = is_sret & sret_legal ? 1'h0 : _GEN_30; // @[CSR.scala 668:31 673:17]
+  wire  is_sfv = io_uop_sys_op == 3'h6 & io_uop_valid; // @[CSR.scala 682:55]
+  wire  is_fence_i = io_uop_sys_op == 3'h5 & io_uop_valid; // @[CSR.scala 684:58]
+  wire  is_sys = io_sfence_vma | is_fence_i; // @[CSR.scala 685:34]
+  wire  is_exc_from_prev = io_uop_exc != 3'h0; // @[CSR.scala 692:38]
+  wire  is_exc_from_lsu = io_lsu_exc_code != 4'h0; // @[CSR.scala 693:43]
+  wire  is_exc_from_csr = ~csr_legal & _wen_T; // @[CSR.scala 694:37]
+  wire  _is_exc_from_sys_T = ~mret_legal; // @[CSR.scala 695:38]
+  wire  is_exc_from_sys = is_mret & ~mret_legal | is_sret & ~sret_legal | is_sfv & ~_csr_legal_T_1; // @[CSR.scala 695:79]
+  wire  is_exc = is_exc_from_prev | is_exc_from_lsu | is_exc_from_csr; // @[CSR.scala 696:62]
+  wire  int_attach = io_uop_valid & (io_uop_fu == 3'h0 | io_uop_fu == 3'h1); // @[CSR.scala 716:37]
+  wire [63:0] int_bits = mip & mie; // @[CSR.scala 717:28]
+  wire [63:0] _int_bits_mmode_T = ~mideleg; // @[CSR.scala 718:36]
+  wire [63:0] int_bits_mmode = int_bits & _int_bits_mmode_T; // @[CSR.scala 718:33]
+  wire [3:0] _GEN_180 = int_bits[5] ? 4'h5 : 4'h0; // @[CSR.scala 710:22 699:24 711:9]
+  wire [3:0] _GEN_181 = int_bits[1] ? 4'h1 : _GEN_180; // @[CSR.scala 708:22 709:9]
+  wire [3:0] _GEN_182 = int_bits[9] ? 4'h9 : _GEN_181; // @[CSR.scala 706:22 707:9]
+  wire [3:0] _GEN_183 = int_bits[7] ? 4'h7 : _GEN_182; // @[CSR.scala 704:22 705:9]
+  wire [3:0] _GEN_184 = int_bits[3] ? 4'h3 : _GEN_183; // @[CSR.scala 702:22 703:9]
+  wire [3:0] int_index_tmp = int_bits[11] ? 4'hb : _GEN_184; // @[CSR.scala 700:17 701:9]
+  wire [3:0] _GEN_186 = int_bits_mmode[5] ? 4'h5 : 4'h0; // @[CSR.scala 710:22 699:24 711:9]
+  wire [3:0] _GEN_187 = int_bits_mmode[1] ? 4'h1 : _GEN_186; // @[CSR.scala 708:22 709:9]
+  wire [3:0] _GEN_188 = int_bits_mmode[9] ? 4'h9 : _GEN_187; // @[CSR.scala 706:22 707:9]
+  wire [3:0] _GEN_189 = int_bits_mmode[7] ? 4'h7 : _GEN_188; // @[CSR.scala 704:22 705:9]
+  wire [3:0] _GEN_190 = int_bits_mmode[3] ? 4'h3 : _GEN_189; // @[CSR.scala 702:22 703:9]
+  wire [3:0] int_index_y = int_bits_mmode[11] ? 4'hb : _GEN_190; // @[CSR.scala 700:17 701:9]
+  wire [3:0] _GEN_192 = mstatus_mie ? int_index_y : 4'h0; // @[CSR.scala 723:30 724:17 720:34]
+  wire [15:0] _T_38 = 16'h1 << int_index_tmp; // @[CSR.scala 727:16]
+  wire [63:0] _GEN_218 = {{48'd0}, _T_38}; // @[CSR.scala 727:34]
+  wire [63:0] _T_39 = _GEN_218 & mideleg; // @[CSR.scala 727:34]
+  wire [3:0] _GEN_193 = status_sie | prv_is_u ? int_index_tmp : 4'h0; // @[CSR.scala 728:50 729:19 720:34]
+  wire [3:0] _GEN_194 = mstatus_mie | prv_is_u | prv_is_s ? int_index_tmp : 4'h0; // @[CSR.scala 732:70 733:19 720:34]
+  wire [3:0] _GEN_195 = _T_39 != 64'h0 ? _GEN_193 : _GEN_194; // @[CSR.scala 727:54]
+  wire [3:0] int_index = mret_legal ? _GEN_192 : _GEN_195; // @[CSR.scala 722:25]
+  wire  is_int = int_attach & int_index != 4'h0; // @[CSR.scala 737:27]
+  wire [1:0] _cause_exc_T_2 = is_exc_from_csr | is_exc_from_sys ? 2'h2 : 2'h0; // @[CSR.scala 748:10]
+  wire [3:0] _cause_exc_T_3 = is_exc_from_lsu ? io_lsu_exc_code : {{2'd0}, _cause_exc_T_2}; // @[CSR.scala 745:8]
   wire [3:0] _cause_exc_T_4 = {2'h2,prv}; // @[Cat.scala 33:92]
   wire [3:0] _cause_exc_T_6 = 3'h1 == io_uop_exc ? 4'h0 : _cause_exc_T_3; // @[Mux.scala 81:58]
   wire [3:0] _cause_exc_T_8 = 3'h2 == io_uop_exc ? 4'h1 : _cause_exc_T_6; // @[Mux.scala 81:58]
@@ -39704,56 +39680,54 @@ module CSR(
   wire [3:0] cause_exc = 3'h3 == io_uop_exc ? 4'hc : _cause_exc_T_14; // @[Mux.scala 81:58]
   wire [15:0] cause_exc_onehot = 16'h1 << cause_exc; // @[OneHot.scala 57:35]
   wire [15:0] cause_int_onehot = 16'h1 << int_index; // @[OneHot.scala 57:35]
-  wire  trap = is_exc | is_int; // @[CSR.scala 821:26]
-  wire [63:0] _GEN_231 = {{48'd0}, cause_exc_onehot}; // @[CSR.scala 826:37]
-  wire [63:0] _trap_to_s_T = _GEN_231 & medeleg; // @[CSR.scala 826:37]
-  wire [63:0] _GEN_232 = {{48'd0}, cause_int_onehot}; // @[CSR.scala 827:37]
-  wire [63:0] _trap_to_s_T_3 = _GEN_232 & mideleg; // @[CSR.scala 827:37]
-  wire  _trap_to_s_T_5 = is_int & _trap_to_s_T_3 != 64'h0; // @[CSR.scala 827:15]
-  wire  _trap_to_s_T_6 = is_exc & _trap_to_s_T != 64'h0 | _trap_to_s_T_5; // @[CSR.scala 826:58]
-  wire  trap_to_s = _is_exc_from_sys_T & _trap_to_s_T_6; // @[CSR.scala 824:19 825:15 822:30]
+  wire  trap = is_exc | is_int; // @[CSR.scala 793:26]
+  wire [63:0] _GEN_219 = {{48'd0}, cause_exc_onehot}; // @[CSR.scala 798:37]
+  wire [63:0] _trap_to_s_T = _GEN_219 & medeleg; // @[CSR.scala 798:37]
+  wire [63:0] _GEN_220 = {{48'd0}, cause_int_onehot}; // @[CSR.scala 799:37]
+  wire [63:0] _trap_to_s_T_3 = _GEN_220 & mideleg; // @[CSR.scala 799:37]
+  wire  _trap_to_s_T_5 = is_int & _trap_to_s_T_3 != 64'h0; // @[CSR.scala 799:15]
+  wire  _trap_to_s_T_6 = is_exc & _trap_to_s_T != 64'h0 | _trap_to_s_T_5; // @[CSR.scala 798:58]
+  wire  trap_to_s = _is_exc_from_sys_T & _trap_to_s_T_6; // @[CSR.scala 796:19 797:15 794:30]
   wire [63:0] _scause_T = {60'h800000000000000,int_index}; // @[Cat.scala 33:92]
-  wire [3:0] _trap_pc_T_4 = is_int & stvec[1:0] == 2'h1 ? int_index : 4'h0; // @[CSR.scala 838:48]
-  wire [61:0] _GEN_233 = {{58'd0}, _trap_pc_T_4}; // @[CSR.scala 838:43]
-  wire [61:0] _trap_pc_T_6 = stvec[63:2] + _GEN_233; // @[CSR.scala 838:43]
+  wire [3:0] _trap_pc_T_4 = is_int & stvec[1:0] == 2'h1 ? int_index : 4'h0; // @[CSR.scala 810:48]
+  wire [61:0] _GEN_221 = {{58'd0}, _trap_pc_T_4}; // @[CSR.scala 810:43]
+  wire [61:0] _trap_pc_T_6 = stvec[63:2] + _GEN_221; // @[CSR.scala 810:43]
   wire [63:0] _trap_pc_T_7 = {_trap_pc_T_6,2'h0}; // @[Cat.scala 33:92]
-  wire [1:0] _GEN_216 = trap_to_s & trap ? prv : {{1'd0}, _GEN_189}; // @[CSR.scala 829:27 835:17]
-  wire [1:0] _GEN_217 = trap_to_s & trap ? 2'h1 : _GEN_186; // @[CSR.scala 829:27 836:17]
-  wire [63:0] _GEN_218 = trap_to_s & trap ? _trap_pc_T_7 : 64'h0; // @[CSR.scala 829:27 838:17 823:30]
-  wire [3:0] _trap_pc_T_12 = is_int & mtvec[1:0] == 2'h1 ? int_index : 4'h0; // @[CSR.scala 849:49]
-  wire [61:0] _GEN_234 = {{58'd0}, _trap_pc_T_12}; // @[CSR.scala 849:44]
-  wire [61:0] _trap_pc_T_14 = mtvec[63:2] + _GEN_234; // @[CSR.scala 849:44]
+  wire [1:0] _GEN_205 = trap_to_s & trap ? prv : {{1'd0}, _GEN_178}; // @[CSR.scala 801:27 807:17]
+  wire [1:0] _GEN_206 = trap_to_s & trap ? 2'h1 : _GEN_175; // @[CSR.scala 801:27 808:17]
+  wire [63:0] _GEN_207 = trap_to_s & trap ? _trap_pc_T_7 : 64'h0; // @[CSR.scala 801:27 810:17 795:30]
+  wire [3:0] _trap_pc_T_12 = is_int & mtvec[1:0] == 2'h1 ? int_index : 4'h0; // @[CSR.scala 821:49]
+  wire [61:0] _GEN_222 = {{58'd0}, _trap_pc_T_12}; // @[CSR.scala 821:44]
+  wire [61:0] _trap_pc_T_14 = mtvec[63:2] + _GEN_222; // @[CSR.scala 821:44]
   wire [63:0] _trap_pc_T_15 = {_trap_pc_T_14,2'h0}; // @[Cat.scala 33:92]
-  wire [63:0] trap_pc = ~trap_to_s & trap ? _trap_pc_T_15 : _GEN_218; // @[CSR.scala 840:28 849:18]
-  wire [63:0] _io_jmp_packet_target_T_1 = is_mret ? mepc : sepc; // @[CSR.scala 855:89]
-  wire [63:0] _io_jmp_packet_target_T_2 = is_sys | satp_updated ? io_uop_npc : _io_jmp_packet_target_T_1; // @[CSR.scala 855:49]
-  wire [1:0] _GEN_235 = reset ? 2'h0 : _GEN_216; // @[CSR.scala 83:{28,28}]
-  wire [63:0] _GEN_236 = reset ? 64'h1 : _GEN_164; // @[CSR.scala 626:{27,27}]
-  wire [63:0] _GEN_237 = reset ? 64'h1 : _GEN_168; // @[CSR.scala 641:{27,27}]
-  assign io_rw_rdata = io_rw_addr == 12'hc02 ? instret : _GEN_174; // @[CSR.scala 684:39 685:15]
+  wire [63:0] trap_pc = ~trap_to_s & trap ? _trap_pc_T_15 : _GEN_207; // @[CSR.scala 812:28 821:18]
+  wire [63:0] _io_jmp_packet_target_T_1 = is_mret ? mepc : sepc; // @[CSR.scala 827:89]
+  wire [63:0] _io_jmp_packet_target_T_2 = is_sys | satp_updated ? io_uop_npc : _io_jmp_packet_target_T_1; // @[CSR.scala 827:49]
+  wire [1:0] _GEN_223 = reset ? 2'h0 : _GEN_205; // @[CSR.scala 83:{28,28}]
+  assign io_rw_rdata = io_rw_addr == 12'hc02 ? instret : _GEN_163; // @[CSR.scala 636:39 637:15]
   assign io_rw_valid = io_rw_addr == 12'hc02 ? mret_legal | prv_is_s & mcounteren[2] | prv_is_u & mcounteren[2] &
-    scounteren[2] : _GEN_176; // @[CSR.scala 684:39 686:15]
-  assign io_prv = ~trap_to_s & trap ? 2'h3 : _GEN_217; // @[CSR.scala 840:28 847:18]
+    scounteren[2] : _GEN_165; // @[CSR.scala 636:39 638:15]
+  assign io_prv = ~trap_to_s & trap ? 2'h3 : _GEN_206; // @[CSR.scala 812:28 819:18]
   assign io_mprv = mstatus_mprv; // @[CSR.scala 183:11]
   assign io_mpp = mstatus_mpp; // @[CSR.scala 184:11]
   assign io_sv39_en = io_rw_addr == 12'h180 ? _GEN_67 : satp[63]; // @[CSR.scala 287:15 289:36]
   assign io_satp_ppn = io_rw_addr == 12'h180 ? _GEN_68 : satp[43:0]; // @[CSR.scala 288:15 289:36]
-  assign io_sfence_vma = is_sfv & _csr_legal_T_1; // @[CSR.scala 734:27]
-  assign io_fence_i = io_uop_sys_op == 3'h5 & io_uop_valid; // @[CSR.scala 732:58]
-  assign io_jmp_packet_valid = trap | is_sys | satp_updated | _T_35 | _T_37; // @[CSR.scala 854:85]
-  assign io_jmp_packet_target = trap ? trap_pc : _io_jmp_packet_target_T_2; // @[CSR.scala 855:30]
-  assign io_is_int = int_attach & int_index != 4'h0; // @[CSR.scala 785:27]
+  assign io_sfence_vma = is_sfv & _csr_legal_T_1; // @[CSR.scala 686:27]
+  assign io_fence_i = io_uop_sys_op == 3'h5 & io_uop_valid; // @[CSR.scala 684:58]
+  assign io_jmp_packet_valid = trap | is_sys | satp_updated | _T_32 | _T_34; // @[CSR.scala 826:85]
+  assign io_jmp_packet_target = trap ? trap_pc : _io_jmp_packet_target_T_2; // @[CSR.scala 827:30]
+  assign io_is_int = int_attach & int_index != 4'h0; // @[CSR.scala 737:27]
   always @(posedge clock) begin
     if (reset) begin // @[CSR.scala 48:26]
       prv <= 2'h3; // @[CSR.scala 48:26]
-    end else if (~trap_to_s & trap) begin // @[CSR.scala 840:28]
-      prv <= 2'h3; // @[CSR.scala 847:18]
-    end else if (trap_to_s & trap) begin // @[CSR.scala 829:27]
-      prv <= 2'h1; // @[CSR.scala 836:17]
-    end else if (is_sret & sret_legal) begin // @[CSR.scala 716:31]
-      prv <= {{1'd0}, status_spp}; // @[CSR.scala 717:17]
+    end else if (~trap_to_s & trap) begin // @[CSR.scala 812:28]
+      prv <= 2'h3; // @[CSR.scala 819:18]
+    end else if (trap_to_s & trap) begin // @[CSR.scala 801:27]
+      prv <= 2'h1; // @[CSR.scala 808:17]
+    end else if (is_sret & sret_legal) begin // @[CSR.scala 668:31]
+      prv <= {{1'd0}, status_spp}; // @[CSR.scala 669:17]
     end else begin
-      prv <= _GEN_180;
+      prv <= _GEN_169;
     end
     if (reset) begin // @[CSR.scala 474:27]
       mcounteren <= 64'h0; // @[CSR.scala 474:27]
@@ -39784,28 +39758,21 @@ module CSR(
         mstatus_tvm <= wdata[20]; // @[CSR.scala 177:20]
       end
     end
-    if (reset) begin // @[CSR.scala 675:24]
-      instret <= 64'h0; // @[CSR.scala 675:24]
-    end else if (io_rw_addr == 12'hb02) begin // @[CSR.scala 677:40]
-      if (wen) begin // @[CSR.scala 679:15]
+    if (reset) begin // @[CSR.scala 627:24]
+      instret <= 64'h0; // @[CSR.scala 627:24]
+    end else if (io_rw_addr == 12'hb02) begin // @[CSR.scala 629:40]
+      if (wen) begin // @[CSR.scala 631:15]
         if (2'h3 == io_rw_cmd) begin // @[Mux.scala 81:58]
           instret <= _wdata_T_2;
         end else begin
           instret <= _wdata_T_6;
         end
       end else begin
-        instret <= _instret_T_1; // @[CSR.scala 676:11]
+        instret <= _instret_T_1; // @[CSR.scala 628:11]
       end
     end else begin
-      instret <= _instret_T_1; // @[CSR.scala 676:11]
+      instret <= _instret_T_1; // @[CSR.scala 628:11]
     end
-    if (reset) begin // @[CSR.scala 656:27]
-      time_ <= 64'h0; // @[CSR.scala 656:27]
-    end else if (timer_tick) begin // @[CSR.scala 660:20]
-      time_ <= _time_T_1; // @[CSR.scala 661:10]
-    end
-    timer_step <= _GEN_237[7:0]; // @[CSR.scala 641:{27,27}]
-    timer_freq <= _GEN_236[7:0]; // @[CSR.scala 626:{27,27}]
     if (reset) begin // @[CSR.scala 605:22]
       cycle <= 64'h0; // @[CSR.scala 605:22]
     end else if (io_rw_addr == 12'hb00) begin // @[CSR.scala 607:38]
@@ -39848,13 +39815,13 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 534:22]
       mtval <= 64'h0; // @[CSR.scala 534:22]
-    end else if (~trap_to_s & trap) begin // @[CSR.scala 840:28]
-      if (io_uop_exc == 3'h3) begin // @[CSR.scala 817:39]
-        mtval <= io_uop_pc; // @[CSR.scala 818:10]
-      end else if (is_exc_from_lsu) begin // @[CSR.scala 814:25]
-        mtval <= io_lsu_addr; // @[CSR.scala 815:10]
+    end else if (~trap_to_s & trap) begin // @[CSR.scala 812:28]
+      if (io_uop_exc == 3'h3) begin // @[CSR.scala 789:39]
+        mtval <= io_uop_pc; // @[CSR.scala 790:10]
+      end else if (is_exc_from_lsu) begin // @[CSR.scala 786:25]
+        mtval <= io_lsu_addr; // @[CSR.scala 787:10]
       end else begin
-        mtval <= 64'h0; // @[CSR.scala 813:25]
+        mtval <= 64'h0; // @[CSR.scala 785:25]
       end
     end else if (io_rw_addr == 12'h343) begin // @[CSR.scala 535:37]
       if (wen) begin // @[CSR.scala 537:15]
@@ -39863,8 +39830,8 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 519:23]
       mcause <= 64'h0; // @[CSR.scala 519:23]
-    end else if (~trap_to_s & trap) begin // @[CSR.scala 840:28]
-      if (is_exc) begin // @[CSR.scala 831:23]
+    end else if (~trap_to_s & trap) begin // @[CSR.scala 812:28]
+      if (is_exc) begin // @[CSR.scala 803:23]
         mcause <= {{60'd0}, cause_exc};
       end else begin
         mcause <= _scause_T;
@@ -39876,8 +39843,8 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 504:21]
       mepc <= 64'h0; // @[CSR.scala 504:21]
-    end else if (~trap_to_s & trap) begin // @[CSR.scala 840:28]
-      mepc <= io_uop_pc; // @[CSR.scala 843:18]
+    end else if (~trap_to_s & trap) begin // @[CSR.scala 812:28]
+      mepc <= io_uop_pc; // @[CSR.scala 815:18]
     end else if (io_rw_addr == 12'h341) begin // @[CSR.scala 505:36]
       if (wen) begin // @[CSR.scala 507:15]
         mepc <= wdata; // @[CSR.scala 508:12]
@@ -39997,13 +39964,13 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 267:22]
       stval <= 64'h0; // @[CSR.scala 267:22]
-    end else if (trap_to_s & trap) begin // @[CSR.scala 829:27]
-      if (io_uop_exc == 3'h3) begin // @[CSR.scala 817:39]
-        stval <= io_uop_pc; // @[CSR.scala 818:10]
-      end else if (is_exc_from_lsu) begin // @[CSR.scala 814:25]
-        stval <= io_lsu_addr; // @[CSR.scala 815:10]
+    end else if (trap_to_s & trap) begin // @[CSR.scala 801:27]
+      if (io_uop_exc == 3'h3) begin // @[CSR.scala 789:39]
+        stval <= io_uop_pc; // @[CSR.scala 790:10]
+      end else if (is_exc_from_lsu) begin // @[CSR.scala 786:25]
+        stval <= io_lsu_addr; // @[CSR.scala 787:10]
       end else begin
-        stval <= 64'h0; // @[CSR.scala 813:25]
+        stval <= 64'h0; // @[CSR.scala 785:25]
       end
     end else if (io_rw_addr == 12'h143) begin // @[CSR.scala 268:37]
       if (wen) begin // @[CSR.scala 270:15]
@@ -40012,8 +39979,8 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 252:23]
       scause <= 64'h0; // @[CSR.scala 252:23]
-    end else if (trap_to_s & trap) begin // @[CSR.scala 829:27]
-      if (is_exc) begin // @[CSR.scala 831:23]
+    end else if (trap_to_s & trap) begin // @[CSR.scala 801:27]
+      if (is_exc) begin // @[CSR.scala 803:23]
         scause <= {{60'd0}, cause_exc};
       end else begin
         scause <= _scause_T;
@@ -40025,8 +39992,8 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 237:21]
       sepc <= 64'h0; // @[CSR.scala 237:21]
-    end else if (trap_to_s & trap) begin // @[CSR.scala 829:27]
-      sepc <= io_uop_pc; // @[CSR.scala 832:17]
+    end else if (trap_to_s & trap) begin // @[CSR.scala 801:27]
+      sepc <= io_uop_pc; // @[CSR.scala 804:17]
     end else if (io_rw_addr == 12'h141) begin // @[CSR.scala 238:36]
       if (wen) begin // @[CSR.scala 240:15]
         sepc <= wdata; // @[CSR.scala 241:12]
@@ -40103,67 +40070,60 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 115:29]
       mstatus_mprv <= 1'h0; // @[CSR.scala 115:29]
-    end else if (is_sret & sret_legal) begin // @[CSR.scala 716:31]
-      if (_GEN_229 != 2'h3) begin // @[CSR.scala 722:34]
-        mstatus_mprv <= 1'h0; // @[CSR.scala 723:20]
+    end else if (is_sret & sret_legal) begin // @[CSR.scala 668:31]
+      if (_GEN_217 != 2'h3) begin // @[CSR.scala 674:34]
+        mstatus_mprv <= 1'h0; // @[CSR.scala 675:20]
       end else begin
-        mstatus_mprv <= _GEN_184;
+        mstatus_mprv <= _GEN_173;
       end
     end else begin
-      mstatus_mprv <= _GEN_184;
+      mstatus_mprv <= _GEN_173;
     end
     if (reset) begin // @[CSR.scala 114:29]
       mstatus_mpp <= 2'h0; // @[CSR.scala 114:29]
-    end else if (~trap_to_s & trap) begin // @[CSR.scala 840:28]
-      mstatus_mpp <= prv; // @[CSR.scala 846:18]
-    end else if (is_mret & mret_legal) begin // @[CSR.scala 703:31]
-      mstatus_mpp <= 2'h0; // @[CSR.scala 708:18]
+    end else if (~trap_to_s & trap) begin // @[CSR.scala 812:28]
+      mstatus_mpp <= prv; // @[CSR.scala 818:18]
+    end else if (is_mret & mret_legal) begin // @[CSR.scala 655:31]
+      mstatus_mpp <= 2'h0; // @[CSR.scala 660:18]
     end else if (io_rw_addr == 12'h300) begin // @[CSR.scala 163:39]
       mstatus_mpp <= _GEN_22;
     end
-    status_spp <= _GEN_235[0]; // @[CSR.scala 83:{28,28}]
+    status_spp <= _GEN_223[0]; // @[CSR.scala 83:{28,28}]
     if (reset) begin // @[CSR.scala 113:29]
       mstatus_mpie <= 1'h0; // @[CSR.scala 113:29]
-    end else if (~trap_to_s & trap) begin // @[CSR.scala 840:28]
-      mstatus_mpie <= mstatus_mie; // @[CSR.scala 844:18]
+    end else if (~trap_to_s & trap) begin // @[CSR.scala 812:28]
+      mstatus_mpie <= mstatus_mie; // @[CSR.scala 816:18]
     end else begin
-      mstatus_mpie <= _GEN_182;
+      mstatus_mpie <= _GEN_171;
     end
     if (reset) begin // @[CSR.scala 81:28]
       status_spie <= 1'h0; // @[CSR.scala 81:28]
-    end else if (trap_to_s & trap) begin // @[CSR.scala 829:27]
-      status_spie <= status_sie; // @[CSR.scala 833:17]
+    end else if (trap_to_s & trap) begin // @[CSR.scala 801:27]
+      status_spie <= status_sie; // @[CSR.scala 805:17]
     end else begin
-      status_spie <= _GEN_188;
+      status_spie <= _GEN_177;
     end
     if (reset) begin // @[CSR.scala 112:29]
       mstatus_mie <= 1'h0; // @[CSR.scala 112:29]
-    end else if (~trap_to_s & trap) begin // @[CSR.scala 840:28]
-      mstatus_mie <= 1'h0; // @[CSR.scala 845:18]
-    end else if (is_mret & mret_legal) begin // @[CSR.scala 703:31]
-      mstatus_mie <= mstatus_mpie; // @[CSR.scala 706:18]
+    end else if (~trap_to_s & trap) begin // @[CSR.scala 812:28]
+      mstatus_mie <= 1'h0; // @[CSR.scala 817:18]
+    end else if (is_mret & mret_legal) begin // @[CSR.scala 655:31]
+      mstatus_mie <= mstatus_mpie; // @[CSR.scala 658:18]
     end else if (io_rw_addr == 12'h300) begin // @[CSR.scala 163:39]
       mstatus_mie <= _GEN_20;
     end
     if (reset) begin // @[CSR.scala 80:28]
       status_sie <= 1'h0; // @[CSR.scala 80:28]
-    end else if (trap_to_s & trap) begin // @[CSR.scala 829:27]
-      status_sie <= 1'h0; // @[CSR.scala 834:17]
-    end else if (is_sret & sret_legal) begin // @[CSR.scala 716:31]
-      status_sie <= status_spie; // @[CSR.scala 719:17]
+    end else if (trap_to_s & trap) begin // @[CSR.scala 801:27]
+      status_sie <= 1'h0; // @[CSR.scala 806:17]
+    end else if (is_sret & sret_legal) begin // @[CSR.scala 668:31]
+      status_sie <= status_spie; // @[CSR.scala 671:17]
     end else if (io_rw_addr == 12'h300) begin // @[CSR.scala 163:39]
       status_sie <= _GEN_14;
     end else begin
       status_sie <= _GEN_7;
     end
     mhartid_writable <= reset | _GEN_86; // @[CSR.scala 340:{33,33}]
-    if (reset) begin // @[CSR.scala 657:27]
-      timer_cnt <= 8'h0; // @[CSR.scala 657:27]
-    end else if (timer_tick) begin // @[CSR.scala 659:19]
-      timer_cnt <= 8'h0;
-    end else begin
-      timer_cnt <= _timer_cnt_T_1;
-    end
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -40212,87 +40172,79 @@ initial begin
   _RAND_4 = {2{`RANDOM}};
   instret = _RAND_4[63:0];
   _RAND_5 = {2{`RANDOM}};
-  time_ = _RAND_5[63:0];
+  cycle = _RAND_5[63:0];
   _RAND_6 = {1{`RANDOM}};
-  timer_step = _RAND_6[7:0];
+  ip_seip_r = _RAND_6[0:0];
   _RAND_7 = {1{`RANDOM}};
-  timer_freq = _RAND_7[7:0];
-  _RAND_8 = {2{`RANDOM}};
-  cycle = _RAND_8[63:0];
-  _RAND_9 = {1{`RANDOM}};
-  ip_seip_r = _RAND_9[0:0];
-  _RAND_10 = {1{`RANDOM}};
-  ip_stip = _RAND_10[0:0];
-  _RAND_11 = {1{`RANDOM}};
-  ip_ssip = _RAND_11[0:0];
+  ip_stip = _RAND_7[0:0];
+  _RAND_8 = {1{`RANDOM}};
+  ip_ssip = _RAND_8[0:0];
+  _RAND_9 = {2{`RANDOM}};
+  mtval = _RAND_9[63:0];
+  _RAND_10 = {2{`RANDOM}};
+  mcause = _RAND_10[63:0];
+  _RAND_11 = {2{`RANDOM}};
+  mepc = _RAND_11[63:0];
   _RAND_12 = {2{`RANDOM}};
-  mtval = _RAND_12[63:0];
+  mscratch = _RAND_12[63:0];
   _RAND_13 = {2{`RANDOM}};
-  mcause = _RAND_13[63:0];
-  _RAND_14 = {2{`RANDOM}};
-  mepc = _RAND_14[63:0];
-  _RAND_15 = {2{`RANDOM}};
-  mscratch = _RAND_15[63:0];
-  _RAND_16 = {2{`RANDOM}};
-  mtvec = _RAND_16[63:0];
+  mtvec = _RAND_13[63:0];
+  _RAND_14 = {1{`RANDOM}};
+  ie_seie = _RAND_14[0:0];
+  _RAND_15 = {1{`RANDOM}};
+  ie_stie = _RAND_15[0:0];
+  _RAND_16 = {1{`RANDOM}};
+  ie_ssie = _RAND_16[0:0];
   _RAND_17 = {1{`RANDOM}};
-  ie_seie = _RAND_17[0:0];
+  ie_meie = _RAND_17[0:0];
   _RAND_18 = {1{`RANDOM}};
-  ie_stie = _RAND_18[0:0];
+  ie_mtie = _RAND_18[0:0];
   _RAND_19 = {1{`RANDOM}};
-  ie_ssie = _RAND_19[0:0];
-  _RAND_20 = {1{`RANDOM}};
-  ie_meie = _RAND_20[0:0];
-  _RAND_21 = {1{`RANDOM}};
-  ie_mtie = _RAND_21[0:0];
-  _RAND_22 = {1{`RANDOM}};
-  ie_msie = _RAND_22[0:0];
+  ie_msie = _RAND_19[0:0];
+  _RAND_20 = {2{`RANDOM}};
+  mideleg = _RAND_20[63:0];
+  _RAND_21 = {2{`RANDOM}};
+  medeleg = _RAND_21[63:0];
+  _RAND_22 = {2{`RANDOM}};
+  mhartid = _RAND_22[63:0];
   _RAND_23 = {2{`RANDOM}};
-  mideleg = _RAND_23[63:0];
+  satp = _RAND_23[63:0];
   _RAND_24 = {2{`RANDOM}};
-  medeleg = _RAND_24[63:0];
+  stval = _RAND_24[63:0];
   _RAND_25 = {2{`RANDOM}};
-  mhartid = _RAND_25[63:0];
+  scause = _RAND_25[63:0];
   _RAND_26 = {2{`RANDOM}};
-  satp = _RAND_26[63:0];
+  sepc = _RAND_26[63:0];
   _RAND_27 = {2{`RANDOM}};
-  stval = _RAND_27[63:0];
+  sscratch = _RAND_27[63:0];
   _RAND_28 = {2{`RANDOM}};
-  scause = _RAND_28[63:0];
-  _RAND_29 = {2{`RANDOM}};
-  sepc = _RAND_29[63:0];
-  _RAND_30 = {2{`RANDOM}};
-  sscratch = _RAND_30[63:0];
-  _RAND_31 = {2{`RANDOM}};
-  stvec = _RAND_31[63:0];
+  stvec = _RAND_28[63:0];
+  _RAND_29 = {1{`RANDOM}};
+  status_fs = _RAND_29[1:0];
+  _RAND_30 = {1{`RANDOM}};
+  mstatus_tsr = _RAND_30[0:0];
+  _RAND_31 = {1{`RANDOM}};
+  mstatus_tw = _RAND_31[0:0];
   _RAND_32 = {1{`RANDOM}};
-  status_fs = _RAND_32[1:0];
+  status_mxr = _RAND_32[0:0];
   _RAND_33 = {1{`RANDOM}};
-  mstatus_tsr = _RAND_33[0:0];
+  status_sum = _RAND_33[0:0];
   _RAND_34 = {1{`RANDOM}};
-  mstatus_tw = _RAND_34[0:0];
+  mstatus_mprv = _RAND_34[0:0];
   _RAND_35 = {1{`RANDOM}};
-  status_mxr = _RAND_35[0:0];
+  mstatus_mpp = _RAND_35[1:0];
   _RAND_36 = {1{`RANDOM}};
-  status_sum = _RAND_36[0:0];
+  status_spp = _RAND_36[0:0];
   _RAND_37 = {1{`RANDOM}};
-  mstatus_mprv = _RAND_37[0:0];
+  mstatus_mpie = _RAND_37[0:0];
   _RAND_38 = {1{`RANDOM}};
-  mstatus_mpp = _RAND_38[1:0];
+  status_spie = _RAND_38[0:0];
   _RAND_39 = {1{`RANDOM}};
-  status_spp = _RAND_39[0:0];
+  mstatus_mie = _RAND_39[0:0];
   _RAND_40 = {1{`RANDOM}};
-  mstatus_mpie = _RAND_40[0:0];
+  status_sie = _RAND_40[0:0];
   _RAND_41 = {1{`RANDOM}};
-  status_spie = _RAND_41[0:0];
-  _RAND_42 = {1{`RANDOM}};
-  mstatus_mie = _RAND_42[0:0];
-  _RAND_43 = {1{`RANDOM}};
-  status_sie = _RAND_43[0:0];
-  _RAND_44 = {1{`RANDOM}};
-  mhartid_writable = _RAND_44[0:0];
-  _RAND_45 = {1{`RANDOM}};
-  timer_cnt = _RAND_45[7:0];
+  mhartid_writable = _RAND_41[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
